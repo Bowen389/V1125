@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-25",
+  "market": {
+    "sse_close": 3476.47,
+    "sse_ma20": 3613.37,
+    "csi300_close": 3898.24,
+    "csi300_ma20": 4013.66,
+    "csi1000_close": 5541.55,
+    "csi1000_ma20": 6222.59,
+    "breadth_all": 0.1051,
+    "quadrant": "Q4"
+  },
+  "strategies": {
+    "2j3_next": {
+      "name": "2j3-Next（大容量一进二中军）",
+      "gate": "零门控（全天候）",
+      "gap_rule": "次日高开 [2%, 6%]，按高开降序",
+      "exit_rule": "T+1封板→T+2开盘卖；未封→T+2收盘卖（3仓×33%，日限2只）",
+      "gap_low": 0.02,
+      "gap_high": 0.06,
+      "gap_sort": "gap_desc",
+      "candidates": [
+        {
+          "code": "002164",
+          "mkt": "sz",
+          "key": "sz002164",
+          "name": "宁波东力",
+          "close": 21.7,
+          "amt20_yi": 13.19,
+          "turnover": 7.8,
+          "note": "20日均额 13.19亿 · 换手 7.8%"
+        }
+      ]
+    },
+    "core_rebound": {
+      "name": "Core-Rebound（大容量单板反包）",
+      "gate": "零门控（全天候）",
+      "gap_rule": "次日缺口 [-5%, +6%]，按20日均额降序",
+      "exit_rule": "T+2起收盘涨停顺延(最多5次)，否则收盘卖（6仓×16.7%，日限2只）",
+      "gap_low": -0.05,
+      "gap_high": 0.06,
+      "gap_sort": "rank",
+      "candidates": []
+    },
+    "lhb_next": {
+      "name": "LHB-Next（机构净买龙虎榜）",
+      "gate": "沪深300 3898.24 / MA20 4013.66：拦截",
+      "gap_rule": "次日缺口 ≥ -5%，按机构净买降序",
+      "exit_rule": "T+2收盘卖，收盘涨停顺延(最多3次)（4仓×25%，日限2只）",
+      "gap_low": -0.05,
+      "gap_high": 0.25,
+      "gap_sort": "rank",
+      "error": null,
+      "candidates": []
+    },
+    "fb_next": {
+      "name": "FB-Next（弱市高质量首板低开）",
+      "gate": "中证1000 5541.55 / MA20 6222.59：通过",
+      "gap_rule": "C2 [-3%, +3%] 优先，C1 [-5%, -2%] 其次，同档按缺口升序",
+      "exit_rule": "T+2收盘卖，收盘涨停顺延（6仓×16.7%）",
+      "gap_low": -0.05,
+      "gap_high": 0.03,
+      "gap_sort": "fb_dual",
+      "candidates": [
+        {
+          "code": "601086",
+          "mkt": "sh",
+          "key": "sh601086",
+          "name": "国芳集团",
+          "close": 10.75,
+          "tier": "C1",
+          "pos60_med": 0.742,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.742 · 换手 7.2% · 乖离 +3.56%"
+        },
+        {
+          "code": "002144",
+          "mkt": "sz",
+          "key": "sz002144",
+          "name": "宏达高科",
+          "close": 9.08,
+          "tier": "C1",
+          "pos60_med": 0.792,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.792 · 换手 8.3% · 乖离 +1.73%"
+        },
+        {
+          "code": "603360",
+          "mkt": "sh",
+          "key": "sh603360",
+          "name": "百傲化学",
+          "close": 10.56,
+          "tier": "C1",
+          "pos60_med": 0.799,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.799 · 换手 8.2% · 乖离 +5.44%"
+        },
+        {
+          "code": "600829",
+          "mkt": "sh",
+          "key": "sh600829",
+          "name": "人民同泰",
+          "close": 8.39,
+          "tier": "C1",
+          "pos60_med": 0.813,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.813 · 换手 8.1% · 乖离 +2.61%"
+        },
+        {
+          "code": "002820",
+          "mkt": "sz",
+          "key": "sz002820",
+          "name": "桂发祥",
+          "close": 8.86,
+          "tier": "C1",
+          "pos60_med": 0.825,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.825 · 换手 6.7% · 乖离 +3.27%"
+        },
+        {
+          "code": "002728",
+          "mkt": "sz",
+          "key": "sz002728",
+          "name": "特一药业",
+          "close": 8.35,
+          "tier": "C1",
+          "pos60_med": 0.833,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.833 · 换手 2.8% · 乖离 +1.84%"
+        },
+        {
+          "code": "000756",
+          "mkt": "sz",
+          "key": "sz000756",
+          "name": "新华制药",
+          "close": 12.16,
+          "tier": "C1",
+          "pos60_med": 0.842,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.842 · 换手 6.8% · 乖离 +2.09%"
+        },
+        {
+          "code": "600280",
+          "mkt": "sh",
+          "key": "sh600280",
+          "name": "中央商场",
+          "close": 2.82,
+          "tier": "C1",
+          "pos60_med": 0.853,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.853 · 换手 5.8% · 乖离 +2.35%"
+        },
+        {
+          "code": "600229",
+          "mkt": "sh",
+          "key": "sh600229",
+          "name": "城市传媒",
+          "close": 5.41,
+          "tier": "C1",
+          "pos60_med": 0.856,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.856 · 换手 6.7% · 乖离 +2.12%"
+        },
+        {
+          "code": "002864",
+          "mkt": "sz",
+          "key": "sz002864",
+          "name": "盘龙药业",
+          "close": 19.86,
+          "tier": "C1",
+          "pos60_med": 0.873,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.873 · 换手 5.8% · 乖离 +2.45%"
+        },
+        {
+          "code": "600088",
+          "mkt": "sh",
+          "key": "sh600088",
+          "name": "中视传媒",
+          "close": 12.64,
+          "tier": "C1",
+          "pos60_med": 0.879,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.879 · 换手 4.7% · 乖离 +3.53%"
+        },
+        {
+          "code": "002069",
+          "mkt": "sz",
+          "key": "sz002069",
+          "name": "獐子岛",
+          "close": 3.54,
+          "tier": "C1",
+          "pos60_med": 0.896,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.896 · 换手 5.9% · 乖离 +2.97%"
+        },
+        {
+          "code": "002197",
+          "mkt": "sz",
+          "key": "sz002197",
+          "name": "证通电子",
+          "close": 6.41,
+          "tier": "C1",
+          "pos60_med": 0.938,
+          "gap_low": -0.05,
+          "gap_high": -0.02,
+          "note": "C1 · pos60=0.938 · 换手 7.6% · 乖离 +4.43%"
+        }
+      ]
+    },
+    "cfgh_next": {
+      "name": "CFGH-Next（零拟合四象限轮动）",
+      "gate": "当前象限 Q4（上证 3476.5/MA20 3613.4，全A宽度 10.5%） → 空仓防守",
+      "gap_rule": "次日微低开 [-3%, 0%)，按评分降序/乖离升序",
+      "exit_rule": "持1日+涨停顺延（单笔10%，日限2~3只）",
+      "gap_low": -0.03,
+      "gap_high": 0.0,
+      "gap_sort": "rank",
+      "candidates": []
+    },
+    "v3_next": {
+      "name": "V3-Next（低波低乖离突破）",
+      "gate": "沪深300 3898.24 / MA20 4013.66：拦截",
+      "gap_rule": "次日温和低开 [-2%, -0.5%)，按VWAP乖离升序",
+      "exit_rule": "持有2日收盘卖（5仓×20%，日限2只）",
+      "gap_low": -0.02,
+      "gap_high": -0.005,
+      "gap_sort": "rank",
+      "candidates": []
+    }
+  }
+}
