@@ -14,6 +14,7 @@ from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
@@ -21,6 +22,7 @@ import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE_DIR = ROOT / ".cache" / "tdx"
+CST = ZoneInfo("Asia/Shanghai")
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 TDX_URL = "https://www.tdx.com.cn/products/data/data/g4day/{ymd}.zip"
 EM_URL = "https://datacenter-web.eastmoney.com/api/data/v1/get"
@@ -38,10 +40,11 @@ def _http_get(url: str, encoding: str = "utf-8", timeout: int = 25, retries: int
     raise RuntimeError(f"GET failed: {url}")
 
 
-def fetch_index_daily(symbol: str, count: int = 120) -> pd.Series:
+def fetch_index_daily(symbol: str, count: int = 140) -> pd.Series:
     """Fetch index daily closes from Tencent (e.g. sh000001, sh000300, sh000852)."""
-    end = dt.date.today().isoformat()
-    start = (dt.date.today() - dt.timedelta(days=int(count * 1.8) + 30)).isoformat()
+    today_cst = dt.datetime.now(CST).date()
+    end = today_cst.isoformat()
+    start = (today_cst - dt.timedelta(days=int(count * 1.8) + 30)).isoformat()
     q = urlencode({"param": f"{symbol},day,{start},{end},{count},"})
     data = json.loads(_http_get(f"https://web.ifzq.gtimg.cn/appstock/app/newfqkline/get?{q}"))
     bars = data["data"][symbol]["day"]
